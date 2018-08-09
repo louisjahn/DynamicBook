@@ -28,6 +28,8 @@ struct BookPage
 
 class ViewController: UIViewController
 {
+    @IBOutlet weak var createBtn: UIButton!
+
     private var pages: Array<BookPage> = Array()
     
     private var currentPageIndex: Int = 0
@@ -37,7 +39,14 @@ class ViewController: UIViewController
     {
         super.viewDidLoad()
     }
-   
+    
+    @IBAction func screenEdgeDetected(_ sender: Any) {
+        //Show the page creation pop-up
+        let viewController: PopUpController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sbCreatePagePopUp") as! PopUpController
+        viewController.parentCtrl = self
+        self.present(viewController, animated: true, completion: nil)
+    }
+    
     @IBAction func buttonCreatePressed(_ sender: Any)
     {
         //Show the page creation pop-up
@@ -61,7 +70,8 @@ class ViewController: UIViewController
         }
         pages.insert(newPage, at: currentPageIndex)
         self.present(pages[currentPageIndex].viewCtrl, animated: true, completion: nil)
-        
+        self.view.bringSubview(toFront: self.view)
+
         //Update the page indicator
         pageNbLabel.text = String(currentPageIndex + 1) + " / " + String(pages.count)
     }
