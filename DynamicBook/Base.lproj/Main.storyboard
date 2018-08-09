@@ -6,10 +6,55 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--PlainText Controller-->
+        <scene sceneID="Ww2-0H-OlO">
+            <objects>
+                <viewController storyboardIdentifier="sbPlainText" title="PlainText Controller" modalTransitionStyle="flipHorizontal" modalPresentationStyle="overCurrentContext" id="wvA-TA-qab" customClass="PlainTextViewController" customModule="DynamicBook" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8qW-5H-Sub">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FRv-vd-ty1">
+                                <rect key="frame" x="16" y="44" width="343" height="734"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Enter your text here..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="yJZ-rQ-rm1">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="734"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="yJZ-rQ-rm1" firstAttribute="leading" secondItem="FRv-vd-ty1" secondAttribute="leading" id="47D-dx-0nF"/>
+                                    <constraint firstItem="yJZ-rQ-rm1" firstAttribute="centerX" secondItem="FRv-vd-ty1" secondAttribute="centerX" id="MnL-3i-uml"/>
+                                    <constraint firstAttribute="bottom" secondItem="yJZ-rQ-rm1" secondAttribute="bottom" id="Ue4-NL-KKi"/>
+                                    <constraint firstItem="yJZ-rQ-rm1" firstAttribute="top" secondItem="FRv-vd-ty1" secondAttribute="top" id="efM-fH-Y8D"/>
+                                    <constraint firstAttribute="trailing" secondItem="yJZ-rQ-rm1" secondAttribute="trailing" id="jDQ-Vg-df1"/>
+                                    <constraint firstItem="yJZ-rQ-rm1" firstAttribute="centerY" secondItem="FRv-vd-ty1" secondAttribute="centerY" id="yWH-rA-7hH"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="FRv-vd-ty1" firstAttribute="top" secondItem="maZ-K7-H9L" secondAttribute="top" id="6Z9-Bq-dUi"/>
+                            <constraint firstItem="FRv-vd-ty1" firstAttribute="bottom" secondItem="maZ-K7-H9L" secondAttribute="bottom" id="vnO-CI-9xV"/>
+                            <constraint firstItem="FRv-vd-ty1" firstAttribute="trailing" secondItem="8qW-5H-Sub" secondAttribute="trailingMargin" id="wyK-dC-tOt"/>
+                            <constraint firstItem="FRv-vd-ty1" firstAttribute="leading" secondItem="8qW-5H-Sub" secondAttribute="leadingMargin" id="z6C-Wr-ZDr"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="maZ-K7-H9L"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Qk-en-Saa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1584.8" y="-289.65517241379314"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -26,11 +71,21 @@
                                     <action selector="buttonCreatePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EMl-gG-po5"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0 / 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sAs-ne-0Hf">
+                                <rect key="frame" x="31" y="773" width="35" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.0" alpha="0.51618685787671237" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="pageNbLabel" destination="sAs-ne-0Hf" id="uCn-Vv-epk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -39,8 +94,8 @@
         <!--CreatePagePopUp-->
         <scene sceneID="anu-9Q-edZ">
             <objects>
-                <viewController storyboardIdentifier="sbCreatePagePopUp" title="CreatePagePopUp" id="3A7-6o-bDA" customClass="PopUpController" customModule="DynamicBook" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="mmh-vX-adK">
+                <viewController storyboardIdentifier="sbCreatePagePopUp" title="CreatePagePopUp" modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="3A7-6o-bDA" customClass="PopUpController" customModule="DynamicBook" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" opaque="NO" contentMode="scaleToFill" id="mmh-vX-adK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -58,22 +113,28 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rwm-rp-vhm" userLabel="Web Page">
-                                        <rect key="frame" x="21" y="26" width="70" height="30"/>
+                                        <rect key="frame" x="4" y="26" width="70" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Web Page"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="93K-CL-XMs" userLabel="Text">
-                                        <rect key="frame" x="159" y="26" width="66" height="30"/>
+                                        <rect key="frame" x="170" y="26" width="66" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Plain Text"/>
+                                        <connections>
+                                            <action selector="textBtnPressed:" destination="3A7-6o-bDA" eventType="touchUpInside" id="aIz-Q0-Jyc"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="x4u-rv-qzI"/>
                     </view>
+                    <connections>
+                        <outlet property="popUpView" destination="Z4T-yQ-QN0" id="KK3-di-gEj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jaB-0W-Dkw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

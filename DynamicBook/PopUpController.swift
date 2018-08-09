@@ -10,20 +10,23 @@ import UIKit
 
 class PopUpController: UIViewController {
     
+    @IBOutlet weak var popUpView: UIView!
+    public var parentCtrl: ViewController?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        popUpView.clipsToBounds = true
+        popUpView.layer.cornerRadius = 10
     }
     
     @IBAction func cancelBtnPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
-        print("Cancel")
+    }
+    
+    @IBAction func textBtnPressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+        parentCtrl?.addPlainText()
     }
     
 }
