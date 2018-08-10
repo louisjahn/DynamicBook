@@ -28,16 +28,40 @@ struct BookPage
 
 class ViewController: UIViewController
 {
-    @IBOutlet weak var createBtn: UIButton!
-
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var pageIndicator: UILabel!
+    
     private var pages: Array<BookPage> = Array()
     
     private var currentPageIndex: Int = 0
-    @IBOutlet weak var pageNbLabel: UILabel!
 
     override func viewDidLoad()
     {
         super.viewDidLoad()
+    }
+    
+    @IBAction func swipedRight(_ sender: Any)
+    {
+        if (pages.count == 1)
+        { return }
+        
+        containerView.subviews[0].removeFromSuperview()
+        currentPageIndex = (currentPageIndex == pages.count - 1 ? 0 : currentPageIndex + 1)
+        containerView.addSubview(pages[currentPageIndex].viewCtrl.view)
+        
+        pageIndicator.text = String(currentPageIndex + 1) + " / " + String(pages.count)
+    }
+    
+    @IBAction func swipedLeft(_ sender: Any)
+    {
+        if (pages.count == 1)
+        { return }
+        
+        containerView.subviews[0].removeFromSuperview()
+        currentPageIndex = (currentPageIndex == 0 ? pages.count - 1 : currentPageIndex - 1)
+        containerView.addSubview(pages[currentPageIndex].viewCtrl.view)
+        
+        pageIndicator.text = String(currentPageIndex + 1) + " / " + String(pages.count)
     }
     
     @IBAction func screenEdgeDetected(_ sender: Any) {
@@ -63,17 +87,35 @@ class ViewController: UIViewController
         let newPage = BookPage(content: content, viewCtrl: viewController)
 
         
-        //Prepare and show the newly added page
-        if (pages.count > 0)
-        {
-            pages[currentPageIndex].viewCtrl.dismiss(animated: true, completion: nil)
-        }
+        //Show the newly added page
         pages.insert(newPage, at: currentPageIndex)
-        self.present(pages[currentPageIndex].viewCtrl, animated: true, completion: nil)
-        self.view.bringSubview(toFront: self.view)
+        if (containerView.subviews.count > 0)
+        {
+            containerView.subviews[0].removeFromSuperview()
+        }
+        containerView.addSubview(pages[currentPageIndex].viewCtrl.view)
 
         //Update the page indicator
-        pageNbLabel.text = String(currentPageIndex + 1) + " / " + String(pages.count)
+        pageIndicator.text = String(currentPageIndex + 1) + " / " + String(pages.count)
+    }
+    
+    public func addWebView()
+    {
+        //Instantiate components
+        let content: PageContent = PageContent(content: "", type: PageType.plainText)
+        let viewController: UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sbWeb") as! WebViewController
+        let newPage = BookPage(content: content, viewCtrl: viewController)
+        
+        //Show the newly added page
+        pages.insert(newPage, at: currentPageIndex)
+        if (containerView.subviews.count > 0)
+        {
+            containerView.subviews[0].removeFromSuperview()
+        }
+        containerView.addSubview(pages[currentPageIndex].viewCtrl.view)
+        
+        //Update the page indicator
+        pageIndicator.text = String(currentPageIndex + 1) + " / " + String(pages.count)
     }
 
 }
