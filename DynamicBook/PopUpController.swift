@@ -8,25 +8,35 @@
 
 import UIKit
 
-class PopUpController: UIViewController {
+class PopUpController: UIViewController
+{
     
     @IBOutlet weak var popUpView: UIView!
     public var parentCtrl: ViewController?
 
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
 
         popUpView.clipsToBounds = true
         popUpView.layer.cornerRadius = 10
     }
     
-    @IBAction func cancelBtnPressed(_ sender: Any) {
+    @IBAction func cancelBtnPressed(_ sender: Any)
+    {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func textBtnPressed(_ sender: Any) {
+    @IBAction func textBtnPressed(_ sender: Any)
+    {
         self.dismiss(animated: true, completion: nil)
         parentCtrl?.addPlainText()
+    }
+    
+    @IBAction func webBtnPressed(_ sender: Any)
+    {
+        self.dismiss(animated: true, completion: nil)
+        parentCtrl?.addWebView()
     }
     
 }
